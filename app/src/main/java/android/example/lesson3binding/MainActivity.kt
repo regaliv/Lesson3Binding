@@ -5,6 +5,7 @@ import android.example.lesson3binding.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
     lateinit var bandingClass : ActivityMainBinding  // ActivityMainBinding это тип разметки
@@ -15,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         bandingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
         setContentView(bandingClass.root)
-        bandingClass.tvTest.text="Binding works"
+
+        bandingClass.b2.setOnClickListener{
+            bandingClass.tv4.visibility=View.GONE
+        }
     }
 }
