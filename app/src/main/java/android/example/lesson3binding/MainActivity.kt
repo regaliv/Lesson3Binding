@@ -9,6 +9,12 @@ import android.view.View
 
 class MainActivity : AppCompatActivity() {
     lateinit var bandingClass : ActivityMainBinding  // ActivityMainBinding это тип разметки
+    val a = 234
+    val b = 34
+
+
+
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(s: Bundle?) {
@@ -17,8 +23,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setContentView(bandingClass.root)
 
-        bandingClass.b2.setOnClickListener{
-            bandingClass.tv4.visibility=View.GONE
+        bandingClass.b1.setOnClickListener {
+            val result = a+b
+            bandingClass.tvResult.text = "Резльтат сложения равен $result"
         }
+        bandingClass.b2.setOnClickListener {
+            val result = a-b
+            bandingClass.tvResult.text = "Результат вычитания равен $result "
+        }
+        bandingClass.b3.setOnClickListener {
+            val result = a*b
+            bandingClass.tvResult.text = "Результат умножения равен $result"
+        }
+
+
+
     }
 }
