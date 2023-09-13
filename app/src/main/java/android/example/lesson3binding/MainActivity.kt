@@ -2,41 +2,43 @@ package android.example.lesson3binding
 
 import android.annotation.SuppressLint
 import android.example.lesson3binding.databinding.ActivityMainBinding
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 
 class MainActivity : AppCompatActivity() {
-    lateinit var bandingClass : ActivityMainBinding  // ActivityMainBinding это тип разметки
-    val a = 234
-    val b = 34
+    lateinit var bindingClass : ActivityMainBinding  // ActivityMainBinding это тип разметки
 
-
-
-
-
-    @SuppressLint("SetTextI18n")
-    override fun onCreate(s: Bundle?) {
+    override fun onCreate(s: Bundle?){
         super.onCreate(s)
-        bandingClass = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
-        setContentView(bandingClass.root)
+        bindingClass=ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bindingClass.root)
 
-        bandingClass.b1.setOnClickListener {
-            val result = a+b
-            bandingClass.tvResult.text = "Резльтат сложения равен $result"
+        bindingClass.btResult.setOnClickListener {
+            val resultValue : Int = bindingClass.edValue.text.toString().toInt()
+           // Log.d("MyLog2", "Result =  $resultValue")
+            when(resultValue){
+
+                in 0..1000 -> {
+                    bindingClass.tvResult.visibility=View.VISIBLE
+                    bindingClass.tvResult.text = "Вы начинающий блогер"
+                }
+                in 1000..100000 ->{
+                    bindingClass.tvResult.visibility=View.VISIBLE
+                    bindingClass.tvResult.text = "Вы средний блогер"
+                }
+                else ->{
+                    bindingClass.tvResult.visibility=View.VISIBLE
+                    bindingClass.tvResult.text = "Вы супер ЗВЕЗДА!"
+                }
+
+            }
         }
-        bandingClass.b2.setOnClickListener {
-            val result = a-b
-            bandingClass.tvResult.text = "Результат вычитания равен $result "
-        }
-        bandingClass.b3.setOnClickListener {
-            val result = a*b
-            bandingClass.tvResult.text = "Результат умножения равен $result"
-        }
-
-
-
     }
+
+
+
 }
